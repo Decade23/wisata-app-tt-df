@@ -1,9 +1,9 @@
 /*
  * Author: Dedi Fardiyanto Copyright (c) 2024.
  *
- * Created At: 12/28/24, 12:16 PM
+ * Created At: 12/30/24, 12:42 AM
  * Filename: nuxt.config.ts
- * Last Modified: 12/26/24, 12:34 PM
+ * Last Modified: 12/30/24, 12:38 AM
  */
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -16,13 +16,33 @@ export default defineNuxtConfig({
     //     middleware: ['redirect'],
     // },
     compatibilityDate: '2024-11-01',
-    modules: ['@pinia/nuxt',],
+    modules: ['@pinia/nuxt', '@vueuse/motion/nuxt'],
     css: ['~/assets/css/main.css'],
     devtools: {enabled: true},
     postcss: {plugins: {tailwindcss: {}, autoprefixer: {},},},
     typescript: {
         strict: true,
     },
+    runtimeConfig: {
+        public: {
+            motion: {
+                directives: {
+                    'pop-bottom': {
+                        initial: {
+                            scale: 0,
+                            opacity: 0,
+                            y: 100,
+                        },
+                        visible: {
+                            scale: 1,
+                            opacity: 1,
+                            y: 0,
+                        }
+                    }
+                }
+            }
+        }
+    }
     // pages: false,
     // plugins:
     //     ['~/plugins/my-plugin.ts'],
